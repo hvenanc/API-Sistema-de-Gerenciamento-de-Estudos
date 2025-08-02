@@ -1,7 +1,6 @@
 from pydantic import BaseModel
-from typing import Optional
 from enum import Enum
-from datetime import date
+from datetime import datetime
 
 
 class StatusEnum(str, Enum):
@@ -10,11 +9,22 @@ class StatusEnum(str, Enum):
     finalizado = "finalizado"
 
 
-class PlanoEstudo(BaseModel):
-    id: Optional[str]
+class PlanoEstudoRequest(BaseModel):
+    disciplina: str
+    descricao: str
+    data_fim: datetime
+
+
+class PlanoEstudoResponse(BaseModel):
+    id: str
     disciplina: str
     descricao: str
     status: StatusEnum = StatusEnum.criado
-    data_inicio: date
-    data_fim: date
+    data_inicio: datetime
+    data_fim: datetime
 
+
+def helper(doc) -> dict:
+    data = doc.to_dict()
+    data["id"] = doc.id
+    return data
