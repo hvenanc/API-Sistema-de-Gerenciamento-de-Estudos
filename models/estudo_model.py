@@ -17,6 +17,9 @@ class PlanoEstudoRequest(BaseModel):
     data_fim: datetime
 
 
+class PlanoStatusRequest(BaseModel):
+    status: StatusEnum
+
 class PlanoEstudoResponse(BaseModel):
     id: str
     disciplina: str
