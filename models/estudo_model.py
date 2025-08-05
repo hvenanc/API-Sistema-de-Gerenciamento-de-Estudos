@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from typing import Optional
 from enum import Enum
 from datetime import datetime
 
@@ -12,6 +13,7 @@ class StatusEnum(str, Enum):
 class PlanoEstudoRequest(BaseModel):
     disciplina: str
     descricao: str
+    status: Optional[StatusEnum] = StatusEnum.criado
     data_fim: datetime
 
 

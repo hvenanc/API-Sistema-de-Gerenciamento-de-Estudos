@@ -10,6 +10,7 @@ instance/*
 venv
 /venv
 .venv
+.vscode
 
 #Json Keys
 serviceAccountKey.json

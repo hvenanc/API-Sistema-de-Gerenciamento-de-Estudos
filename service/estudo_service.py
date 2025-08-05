@@ -31,4 +31,25 @@ class PlanoEstudoService:
     def listar_plano_por_id(self, id):
         doc = self.collection.document(id).get()
         return helper(doc) if doc.exists else None
+    
+
+    def editar_plano(self, id, dados: PlanoEstudoRequest):
+        doc = self.collection.document(id)
+
+        if not doc.get().exists:
+            return None
+        
+        else:
+            doc.update(dados.model_dump(exclude_unset=True))
+            plano = doc.get()
+            return helper(plano)
+        
+    
+
+    def deletar_plano(self, id):
+        doc = self.collection.document(id).get()
+        if doc.exists:
+            doc.reference.delete()
+            return True
+        return None
 
