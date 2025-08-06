@@ -45,7 +45,6 @@ class PlanoEstudoService:
             return helper(plano)
         
     
-
     def deletar_plano(self, id):
         doc = self.collection.document(id).get()
         if doc.exists:
