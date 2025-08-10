@@ -5,7 +5,7 @@ import os
 
 load_dotenv()
 
-cred = credentials.Certificate(os.getenv('FIREBASE_KEY'))
+cred = credentials.Certificate('config/serviceAccountKey.json')
 firebase_admin.initialize_app(cred)
 
 db = firestore.client()

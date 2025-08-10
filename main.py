@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routes import estudo_routes
+from routes import estudo_routes, usuario_routes
 
 app = FastAPI(
     title = "API de Gerenciamento de Estudos",
@@ -8,6 +8,7 @@ app = FastAPI(
     description= "Estudos"
 )
 app.include_router(estudo_routes.router)
+app.include_router(usuario_routes.router)
 
 # Configuração do CORS para ser público
 app.add_middleware(
