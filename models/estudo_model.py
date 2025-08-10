@@ -20,6 +20,7 @@ class PlanoEstudoRequest(BaseModel):
 class PlanoStatusRequest(BaseModel):
     status: StatusEnum
 
+
 class PlanoEstudoResponse(BaseModel):
     id: str
     disciplina: str
