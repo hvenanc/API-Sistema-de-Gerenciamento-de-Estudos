@@ -12,7 +12,6 @@ class UsuarioService:
 
 
     def get_password_hash(self, password: str) -> str:
-        """Gera o hash de uma senha."""
         return self.pwd_context.hash(password)
 
     
