@@ -4,17 +4,10 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 from passlib.context import CryptContext
-from pydantic_settings import BaseSettings
 from service.usuario_service import UsuarioService
 from models.usuario_model import *
+from schemas.project_settings import Settings
 
-
-class Settings(BaseSettings):
-    SECRET_KEY: str
-    ALGORITHM: str
-    ACCESS_TOKEN_EXPIRE_MINUTES: int
-    class Config:
-        env_file = ".env"
 
 settings = Settings()
 user_service = UsuarioService()
@@ -64,6 +57,5 @@ async def get_current_user(token: str = Depends(oauth2_scheme)) -> UserResponse:
     if user is None:
         raise credentials_exception
         
-    # Retornamos um objeto User, que não contém o hash da senha
-    #return User(id=user_from_db.id, email=user_from_db.email)
+    # Retornamos um objeto UserResponse, sem expor o hash da senha
     return UserResponse(id=user.id, nome=user.nome, email=user.email)

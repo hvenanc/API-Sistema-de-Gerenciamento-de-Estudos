@@ -1,11 +1,10 @@
 import firebase_admin
 from firebase_admin import credentials, firestore
-from dotenv import load_dotenv
-import os
+from schemas.project_settings import Settings
 
-load_dotenv()
+settings = Settings()
 
-cred = credentials.Certificate('config/serviceAccountKey.json')
+cred = credentials.Certificate(settings.SERVICE_ACCOUNT_KEY)
 firebase_admin.initialize_app(cred)
 
 db = firestore.client()
