@@ -12,12 +12,12 @@ service = PlanoEstudoService()
 
 @router.post("/", response_model = PlanoEstudoResponse, status_code=201)
 async def criar_plano(dados: PlanoEstudoRequest):
-    return service.criar_plano(dados)
+    return service.criar(dados)
 
 
 @router.get("/", response_model=List[PlanoEstudoResponse])
-async def listar():
-    return service.listar_planos()
+async def listar_todos_planos():
+    return service.listar_todos_planos()
 
 
 @router.get("/periodo", response_model=List[PlanoEstudoResponse])
